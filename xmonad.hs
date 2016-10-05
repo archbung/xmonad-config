@@ -13,7 +13,7 @@ main = xmonad def
   }
     where
       keys' XConfig { modMask = modm } = M.fromList
-        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata-11'")
+        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata-12'")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
         , ((0, xF86XK_AudioMute),         spawn "pamixer -t")
@@ -23,4 +23,8 @@ main = xmonad def
 
       manageHook' = composeAll
         [ className =? "chromium" --> doShift "2"
+        , className =? "slack"    --> doShift "8"
+        , className =? "Slack"    --> doShift "8"
+        , className =? "zathura"  --> doShift "3"
+        , className =? "Zathura"  --> doShift "3"
         ]
