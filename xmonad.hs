@@ -5,7 +5,7 @@ import XMonad
 
 main :: IO ()
 main = xmonad def 
-  { terminal    = "termite"
+  { terminal    = "st"
   , modMask     = mod4Mask
   , borderWidth = 0
   , keys        = \c -> keys' c `M.union` keys def c
@@ -14,8 +14,8 @@ main = xmonad def
     where
       keys' XConfig { modMask = modm } = M.fromList
         [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata-12'")
-        , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
-        , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
+        , ((0, xF86XK_MonBrightnessUp),   spawn "light -A 5")
+        , ((0, xF86XK_MonBrightnessDown), spawn "light -U 5")
         , ((0, xF86XK_AudioMute),         spawn "pamixer -t")
         , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer -i 5")
         , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer -d 5")
@@ -23,8 +23,5 @@ main = xmonad def
 
       manageHook' = composeAll
         [ className =? "chromium" --> doShift "2"
-        , className =? "slack"    --> doShift "8"
-        , className =? "Slack"    --> doShift "8"
-        , className =? "zathura"  --> doShift "3"
-        , className =? "Zathura"  --> doShift "3"
+        , className =? "Atom"     --> doShift "3"
         ]
