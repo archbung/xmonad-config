@@ -1,14 +1,15 @@
+module Main where
+
 import qualified Data.Map as M
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
-import XMonad.Layout.IndependentScreens
 import qualified XMonad.StackSet as W
 
 
 main :: IO ()
 main = xmonad def
-  { terminal    = "termite -e fish"
+  { terminal    = "termite"
   , modMask     = mod4Mask
   , borderWidth = 2
   , keys        = \c -> keys' c `M.union` keys def c
@@ -23,12 +24,6 @@ main = xmonad def
         , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase")
         , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease")
         ]
-        ++
-        [ ((m .|. modm, k), windows $ f i)
-          | (i, k) <- zip (workspaces conf) [xK_1 .. xK_9]
-          , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
-        ]
-
 
       manageHook' = composeAll
         [ className =? "chromium" --> doShift "2"
