@@ -24,6 +24,7 @@ executable xmonad
                      , mtl
                      , unix
                      , xmonad
+                     , xmonad-contrib
                      , containers
                      , X11
   default-language:    Haskell2010
