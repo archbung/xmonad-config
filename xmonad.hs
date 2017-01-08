@@ -9,7 +9,7 @@ import qualified XMonad.StackSet as W
 
 main :: IO ()
 main = xmonad def
-  { terminal    = "termite"
+  { terminal    = "alacritty"
   , modMask     = mod4Mask
   , borderWidth = 2
   , keys        = \c -> keys' c `M.union` keys def c
@@ -21,11 +21,11 @@ main = xmonad def
         , ((0, xF86XK_MonBrightnessUp),   spawn "light -A 5")
         , ((0, xF86XK_MonBrightnessDown), spawn "light -U 5")
         , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")
-        , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase")
-        , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease")
+        , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase 5")
+        , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease 5")
         ]
 
       manageHook' = composeAll
-        [ className =? "chromium" --> doShift "2"
+        [ className =? "Chromium" --> doShift "2"
         , className =? "Emacs"    --> doShift "3"
         ]
