@@ -4,4 +4,6 @@ BIN=$1
 [[ -n $BIN ]] || BIN=xmonad
 
 # copy the xmonad exec to this folder since it is in $PATH
-stack install --local-bin-path $HOME/.local/bin
+INSTALL_DIR=$HOME/.local/bin
+[[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR
+stack install --local-bin-path $INSTALL_DIR
