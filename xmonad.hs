@@ -9,7 +9,7 @@ import qualified XMonad.StackSet as W
 
 main :: IO ()
 main = xmonad def
-  { terminal    = "termite -e tmux"
+  { terminal    = "alacritty"
   , modMask     = mod4Mask
   , borderWidth = 0
   , keys        = \c -> keys' c `M.union` keys def c
@@ -17,7 +17,7 @@ main = xmonad def
   }
     where
       keys' conf = let modm = modMask conf in M.fromList $
-        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata-12'")
+        [ ((modm, xK_p),                  spawn "dmenu_run -b -fn 'Inconsolata-12'")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
         , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")
