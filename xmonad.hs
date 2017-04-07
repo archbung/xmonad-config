@@ -10,7 +10,7 @@ import qualified XMonad.StackSet as W
 main :: IO ()
 main = xmonad def
   { terminal    = "alacritty"
-  , modMask     = mod4Mask
+  , modMask     = mod1Mask
   , borderWidth = 0
   , keys        = \c -> keys' c `M.union` keys def c
   , manageHook  = manageHook' <+> manageHook def
