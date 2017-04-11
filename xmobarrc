@@ -1,6 +1,6 @@
 Config { font         = "xft:Inconsolata:size=11:antialias=true"
        , bgColor      = "black"
-       , fgColor      = "#646464"
+       , fgColor      = "#cc241d"
        , position     = Top
        , border       = NoBorder
        , borderWidth  = 0
