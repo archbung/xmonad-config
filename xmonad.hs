@@ -4,11 +4,20 @@ import qualified Data.Map as M
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
+import XMonad.Hooks.DynamicLog
 import qualified XMonad.StackSet as W
 
 
 main :: IO ()
-main = xmonad def
+main = xmonad =<< statusBar myBar myPP toggleStrutKey myConfig
+
+myBar = "xmobar"   
+
+myPP  = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "[" "]" }
+
+toggleStrutKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
+
+myConfig = defaultConfig
   { terminal    = "alacritty"
   , modMask     = mod1Mask
   , borderWidth = 0
@@ -17,7 +26,7 @@ main = xmonad def
   }
     where
       keys' conf = let modm = modMask conf in M.fromList $
-        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata-12'")
+        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'inconsolata-12'")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
         , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")

@@ -1,0 +1,19 @@
+Config { font         = "xft:Inconsolata:size=11:antialias=true"
+       , bgColor      = "black"
+       , fgColor      = "#646464"
+       , position     = Top
+       , border       = NoBorder
+       , borderWidth  = 0
+
+       , lowerOnStart     = True
+       , hideOnStart      = False
+       , allDesktops      = True
+       , overrideRedirect = True
+       , pickBroadest     = False
+       , persistent       = True
+
+       , sepChar  = "%"
+       , template = " %StdinReader% "
+       , commands = 
+         [ Run StdinReader ]
+       }
