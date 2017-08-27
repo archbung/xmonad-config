@@ -19,22 +19,21 @@ toggleStrutKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 myConfig = defaultConfig
   { terminal    = "alacritty"
-  , modMask     = mod1Mask
-  , borderWidth = 0
+  , modMask     = mod4Mask
+  , borderWidth = 2
   , keys        = \c -> keys' c `M.union` keys def c
   , manageHook  = manageHook' <+> manageHook def
   }
     where
       keys' conf = let modm = modMask conf in M.fromList $
-        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'inconsolata-12'")
+        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Iosevka-12'")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
-        , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")
-        , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase 5")
-        , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease 5")
+        , ((0, xF86XK_AudioMute),         spawn "amixer set Master toggle")
+        , ((0, xF86XK_AudioRaiseVolume),  spawn "amixer set Master 5%+")
+        , ((0, xF86XK_AudioLowerVolume),  spawn "amixer set Master 5%-")
         ]
 
       manageHook' = composeAll
         [ className =? "Chromium" --> doShift "2"
-        , className =? "Emacs"    --> doShift "3"
         ]
