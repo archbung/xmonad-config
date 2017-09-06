@@ -27,6 +27,7 @@ myConfig = defaultConfig
     where
       keys' conf = let modm = modMask conf in M.fromList $
         [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Iosevka-12'")
+        , ((modm .|. shiftMask, xK_l),    spawn "i3lock -c 000000")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
         , ((0, xF86XK_AudioMute),         spawn "amixer set Master toggle")
