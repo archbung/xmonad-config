@@ -23,10 +23,11 @@ myConfig = defaultConfig
   , borderWidth = 2
   , keys        = \c -> keys' c `M.union` keys def c
   , manageHook  = manageHook' <+> manageHook def
+  , focusedBorderColor  = "#ff79c6"
   }
     where
       keys' conf = let modm = modMask conf in M.fromList $
-        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Iosevka-12'")
+        [ ((modm, xK_p),                  spawn "dmenu_run -fn 'InputMonoCondensed-10' -b")
         , ((modm .|. shiftMask, xK_l),    spawn "i3lock -c 000000")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
@@ -38,4 +39,5 @@ myConfig = defaultConfig
 
       manageHook' = composeAll
         [ className =? "Chromium" --> doShift "2"
+        , className =? "vivaldi-stable" --> doShift "2"
         ]
