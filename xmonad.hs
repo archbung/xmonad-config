@@ -17,13 +17,12 @@ myPP  = xmobarPP { ppCurrent = xmobarColor "#d79921" "" . wrap "[" "]" }
 
 toggleStrutKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
-myConfig = defaultConfig
+myConfig = def
   { terminal    = "alacritty"
   , modMask     = mod4Mask
   , borderWidth = 2
   , keys        = \c -> keys' c `M.union` keys def c
   , manageHook  = manageHook' <+> manageHook def
-  , focusedBorderColor  = "#ff79c6"
   }
     where
       keys' conf = let modm = modMask conf in M.fromList $
@@ -31,9 +30,9 @@ myConfig = defaultConfig
         , ((modm .|. shiftMask, xK_l),    spawn "i3lock -c 000000")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
-        , ((0, xF86XK_AudioMute),         spawn "amixer set Master toggle")
-        , ((0, xF86XK_AudioRaiseVolume),  spawn "amixer set Master 5%+")
-        , ((0, xF86XK_AudioLowerVolume),  spawn "amixer set Master 5%-")
+        , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")
+        , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase 5")
+        , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease 5")
         , ((0, xF86XK_Display),           spawn "multihead")
         ]
 
