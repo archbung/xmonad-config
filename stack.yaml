@@ -5,4 +5,5 @@ packages:
 extra-deps: 
   - xmonad-contrib-0.13
   - X11-xft-0.3.1
-resolver: lts-9.6
+    #  - http-conduit-2.3.0
+resolver: lts-10.5

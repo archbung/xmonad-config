@@ -5,6 +5,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
 import XMonad.Hooks.DynamicLog
+import XMonad.Actions.UpdatePointer
 import qualified XMonad.StackSet as W
 
 
@@ -21,6 +22,7 @@ myConfig = def
   { terminal    = "alacritty"
   , modMask     = mod4Mask
   , borderWidth = 2
+  , focusFollowsMouse = False
   , keys        = \c -> keys' c `M.union` keys def c
   , manageHook  = manageHook' <+> manageHook def
   }
@@ -38,5 +40,5 @@ myConfig = def
 
       manageHook' = composeAll
         [ className =? "Chromium" --> doShift "2"
-        , className =? "vivaldi-stable" --> doShift "2"
+        , className =? "Firefox Developer Edition" --> doShift "2"
         ]
