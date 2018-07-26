@@ -41,5 +41,6 @@ myConfig = def
       manageHook' = composeAll
         [ className =? "Chromium" --> doShift "3"
         , className =? "Firefox Developer Edition" --> doShift "2"
+        , className =? "Nightly" --> doShift "2"
         , className =? "Emacs" --> doShift "1"
         ]
