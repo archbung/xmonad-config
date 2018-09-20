@@ -19,7 +19,7 @@ myPP  = xmobarPP { ppCurrent = xmobarColor "#d79921" "" . wrap "[" "]" }
 toggleStrutKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 myConfig = def
-  { terminal    = "termite"
+  { terminal    = "kitty"
   , modMask     = mod4Mask
   , borderWidth = 2
   , focusFollowsMouse = False
