@@ -32,9 +32,9 @@ myConfig = def
         , ((modm .|. shiftMask, xK_l),    spawn "i3lock -c 000000")
         , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
-        , ((0, xF86XK_AudioMute),         spawn "ponymix toggle")
-        , ((0, xF86XK_AudioRaiseVolume),  spawn "ponymix increase 5")
-        , ((0, xF86XK_AudioLowerVolume),  spawn "ponymix decrease 5")
+        , ((0, xF86XK_AudioMute),         spawn "pamixer -t")
+        , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer -i 5")
+        , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer -d 5")
         , ((0, xF86XK_Display),           spawn "multihead")
         ]
 
