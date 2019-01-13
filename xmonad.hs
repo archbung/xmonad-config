@@ -8,8 +8,9 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen
-import XMonad.Layout.Tabbed
+import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 
 
@@ -32,13 +33,13 @@ myManageHook = composeAll
     ]
 
 myLayout = avoidStruts (
-    ThreeColMid 1 (3/100) (1/2) |||
-    Tall 1 (3/100) (1/2) |||
-    Mirror (Tall 1 (3/100) (1/2)) |||
-    tabbed shrinkText tabConfig |||
-    Full |||
-    spiral (6/7) |||
-    noBorders (fullscreenFull Full))
+    renamed [Replace "3C"] (ThreeColMid 1 (3/100) (3/4)) |||
+    renamed [Replace "R!"] (Mirror (Tall 1 (3/100) (1/2))) |||
+    --Mirror (Tall 1 (3/100) (1/2)) |||
+    renamed [Replace "T" ] (tabbed shrinkText tabConfig) |||
+    --Full |||
+    --spiral (6/7) |||
+    renamed [Replace "F" ] (noBorders (fullscreenFull Full)))
 
 tabConfig = def
            
