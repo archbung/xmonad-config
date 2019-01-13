@@ -13,7 +13,11 @@ Config { font         = "xft:Inconsolata for Powerline:size=12:antialias=true"
        , persistent       = True
 
        , sepChar  = "%"
-       , template = " %StdinReader% "
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %date% | %uname% "
        , commands = 
-         [ Run StdinReader ]
+         [ Run Date "%H:%M:%S" "date" 5 
+	 , Run Com "uname" ["-s", "-r"] "" 36000
+	 , Run StdinReader
+	 ]
        }
