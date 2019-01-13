@@ -5,6 +5,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Tabbed
@@ -51,6 +52,8 @@ myConfig = def
   , layoutHook          = smartBorders myLayout
   }
 
+toggleStrutsKey XConfig { XMonad.modMask = modMask }  = (modMask, xK_b)
+
 main :: IO ()
-main = xmonad myConfig
+main  = xmonad =<< statusBar "xmobar" xmobarPP toggleStrutsKey myConfig
 

@@ -1,7 +1,7 @@
-Config { font         = "xft:Inconsolata:size=11:antialias=true"
+Config { font         = "xft:Inconsolata for Powerline:size=12:antialias=true"
        , bgColor      = "black"
        , fgColor      = "#cc241d"
-       , position     = Top
+       , position     = Bottom
        , border       = NoBorder
        , borderWidth  = 0
 
