@@ -3,7 +3,7 @@ extra-package-dbs: []
 packages:
 - '.'
 extra-deps: 
-  - xmonad-contrib-0.13
-  - xmonad-extras-0.13.4.1
-  - X11-xft-0.3.1
-resolver: lts-11.22
+  - xmonad-contrib-0.15
+  - xmonad-extras-0.15
+  - X11-1.9
+resolver: lts-13.21

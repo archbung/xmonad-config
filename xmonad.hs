@@ -15,7 +15,7 @@ import XMonad.Layout.ThreeColumns
 
 
 myKeys conf = let modm = modMask conf in M.fromList
-    [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Inconsolata for Powerline-12' -b")
+    [ ((modm, xK_p),                  spawn "dmenu_run -fn 'Hack-10' -b")
     , ((modm .|. shiftMask, xK_l),    spawn "i3lock -c 000000")
     , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight +5")
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -5")
