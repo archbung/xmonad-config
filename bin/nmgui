@@ -2,4 +2,4 @@
 
 nm-applet 2>&1> /dev/null &
 stalonetray 2>&1> /dev/null
-kill-all nm-applet
+killall nm-applet
