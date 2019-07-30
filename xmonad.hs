@@ -26,9 +26,7 @@ myKeys conf = let modm = modMask conf in M.fromList
     ]
 
 myManageHook = composeAll
-    [ className =? "Chromium" --> doShift "3"
-    , className =? "Firefox Developer Edition" --> doShift "2"
-    , className =? "Nightly" --> doShift "2"
+    [ stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "2"
     , className =? "Emacs" --> doShift "1"
     ]
 
