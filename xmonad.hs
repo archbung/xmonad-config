@@ -14,7 +14,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 
 
-myMenu = "rofi -show run -modi run -location 7 -width 100 -lines 2 -line-margin 0 -line-padding 1 -separator-style none -font 'Inconsolata 12' -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
+myMenu = "rofi -show run -modi run -location 7 -width 100 -lines 2 -line-margin 0 -line-padding 1 -separator-style none -font 'Input Mono Narrow 11' -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
 
 myKeys conf = let modm = modMask conf in M.fromList
     [ ((modm, xK_p),                  spawn myMenu)
