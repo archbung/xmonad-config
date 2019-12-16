@@ -13,8 +13,14 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 
+import XMonad.Actions.UpdatePointer
 
-myMenu = "rofi -show run -modi run -location 7 -width 100 -lines 2 -line-margin 0 -line-padding 1 -separator-style none -font 'Input Mono Narrow 11' -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
+
+myMenu = "rofi -show run -modi run \
+    \ -location 7 -width 100 -lines 1 \
+    \ -line-margin 0 -line-padding 1 \
+    \ -separator-style none -font 'Input Mono Narrow 11' \
+    \ -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
 
 myKeys conf = let modm = modMask conf in M.fromList
     [ ((modm, xK_p),                  spawn myMenu)
@@ -28,22 +34,25 @@ myKeys conf = let modm = modMask conf in M.fromList
     ]
 
 myManageHook = composeAll
-    [ stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "2"
-    , className =? "Emacs" --> doShift "1"
+    [ className =? "firefoxdeveloperedition" --> doShift "web"
+    , className =? "Emacs" --> doShift "main"
+    , className =? "Chromium" --> doShift "web"
+    , className =? "Steam" --> doShift "fun"
+    , className =? "Slack" --> doShift "comm"
+    , className =? "Zenity" --> doFloat
     ]
 
 myLayout = avoidStruts (
+    renamed [Replace "R"] (Tall 1 (3/100) (1/2)) |||
+    renamed [Replace "S" ] (spiral (6/7)) |||
     renamed [Replace "3C"] (ThreeColMid 1 (3/100) (3/4)) |||
-    renamed [Replace "R!"] (Mirror (Tall 1 (3/100) (1/2))) |||
     --Mirror (Tall 1 (3/100) (1/2)) |||
-    renamed [Replace "T" ] (tabbed shrinkText tabConfig) |||
+    renamed [Replace "T" ] (tabbed shrinkText def) |||
     --Full |||
-    --spiral (6/7) |||
     renamed [Replace "F" ] (noBorders (fullscreenFull Full)))
 
-tabConfig = def
-           
-myConfig = def
+main :: IO ()
+main  = xmonad $ def
   { terminal            = "termite"
   , modMask             = mod4Mask
   , borderWidth         = 2
@@ -51,10 +60,5 @@ myConfig = def
   , keys                = \c -> myKeys c `M.union` keys def c
   , manageHook          = myManageHook <+> manageHook def
   , layoutHook          = smartBorders myLayout
+  , workspaces          = ["main", "web", "code", "4", "5", "6", "7", "comm", "fun", "scratch"]
   }
-
-toggleStrutsKey XConfig { XMonad.modMask = modMask }  = (modMask, xK_b)
-
-main :: IO ()
-main  = xmonad =<< statusBar "xmobar" xmobarPP toggleStrutsKey myConfig
-
