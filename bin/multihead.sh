@@ -11,12 +11,12 @@ elif [ "$(uname -n)" = "heisenberg" ]; then
 fi
 
 
-if [ ! -e ${TOGGLE} ]; then
-  touch ${TOGGLE}
-  xrandr --output ${PRIMARY} --auto --output ${SECONDARY} --auto --${2-above} ${PRIMARY}
+if [ ! -e "$TOGGLE" ]; then
+  touch "$TOGGLE"
+  xrandr --output "$PRIMARY" --auto --output "$SECONDARY" --auto --"$2-above" "$PRIMARY"
 else
   rm ${TOGGLE}
-  xrandr --output ${SECONDARY} --auto --off
+  xrandr --output "$SECONDARY" --auto --off
 fi
 
 unset PRIMARY
