@@ -12,7 +12,7 @@ import           XMonad.Actions.UpdatePointer
 
 
 main :: IO ()
-main  = xmonad $ Ewmh.ewmh def
+main  = xmonad =<< xmobar (Ewmh.ewmh def
   { terminal    = "termite"
   , modMask     = mod4Mask
   , borderWidth = 2
@@ -39,12 +39,12 @@ main  = xmonad $ Ewmh.ewmh def
   , ("<XF86AudioMute>",         spawn "pamixer -t")
   , ("<XF86AudioRaiseVolume>",  spawn "pamixer -i 5")
   , ("<XF86AudioLowerVolume>",  spawn "pamixer -d 5")
-  ]
+  ])
 
     where
         role = stringProperty "WM_WINDOW_ROLE"
         menu = "rofi -show run -modi run \
-                \ -location 7 -width 100 -lines 1 \
+                \ -location 1 -width 100 -lines 1 \
                 \ -line-margin 0 -line-padding 1 \
-                \ -separator-style none -font 'Input Mono Narrow 11' \
+                \ -separator-style none -font 'Inconsolata 11' \
                 \ -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
