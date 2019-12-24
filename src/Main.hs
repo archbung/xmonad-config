@@ -21,6 +21,7 @@ main  = xmonad =<< xmobar (Ewmh.ewmh def
         , role =? "browser"     --> doShift "2"
         , role =? "pop-up"      --> doFloat
         , className =? "Steam"  --> doShift "9"
+        , appName =? "zenity"   --> doFloat
         , fullscreenManageHook
         ]
   , layoutHook  = smartBorders $ avoidStruts $
