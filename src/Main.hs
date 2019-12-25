@@ -36,6 +36,7 @@ main  = xmonad =<< xmobar (Ewmh.ewmh def
   }
   `additionalKeysP`
   [ ("M-p",                     spawn menu)
+  , ("M-q",                     spawn "xmonad --restart")
   , ("M-S-l",                   spawn "i3lock -c 000000")
   , ("<XF86AudioMute>",         spawn "pamixer -t")
   , ("<XF86AudioRaiseVolume>",  spawn "pamixer -i 5")
@@ -44,8 +45,4 @@ main  = xmonad =<< xmobar (Ewmh.ewmh def
 
     where
         role = stringProperty "WM_WINDOW_ROLE"
-        menu = "rofi -show run -modi run \
-                \ -location 1 -width 100 -lines 1 \
-                \ -line-margin 0 -line-padding 1 \
-                \ -separator-style none -font 'Inconsolata 11' \
-                \ -columns 9 -bw 0 -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab ''"
+        menu = "rofi -combi-modi window,drun -show combi -modi combi -hide-scrollbar"
