@@ -4,6 +4,7 @@ import           XMonad
 import           XMonad.Hooks.ManageDocks
 import qualified XMonad.Hooks.EwmhDesktops      as Ewmh
 import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.SetWMName
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Fullscreen
 import           XMonad.Layout.Spiral
@@ -33,6 +34,7 @@ main  = xmonad =<< xmobar (Ewmh.ewmh def
         [ handleEventHook def
         , fullscreenEventHook
         ]
+  , startupHook = setWMName "LG3D"
   }
   `additionalKeysP`
   [ ("M-p",                     spawn menu)
