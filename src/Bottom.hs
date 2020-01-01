@@ -1,11 +1,8 @@
 import Xmobar
 
 
-zenburnRed      = "#CC9393"
-zenburnBg       = "#1f1f1f"
+zenburnFg, doomBg :: String
 zenburnFg       = "#989890"
-zenburnYl       = "#F0DFAF"
-zenburnGreen    = "#7F9F7F"
 doomBg          = "#22242b"
 
 defaultHeight :: Int

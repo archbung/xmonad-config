@@ -13,3 +13,4 @@ extra-deps:
   - xmobar-0.32
   - iwlib-0.1.0
   - libmpd-0.9.0.10
+  - haskell-src-exts-1.22.0

@@ -1,6 +1,7 @@
 module Main where
 
 import           XMonad
+import           XMonad.Actions.UpdatePointer
 import           XMonad.Hooks.ManageDocks
 import qualified XMonad.Hooks.EwmhDesktops      as Ewmh
 import           XMonad.Hooks.DynamicLog
@@ -10,20 +11,20 @@ import           XMonad.Layout.Fullscreen
 import           XMonad.Layout.Spiral
 import           XMonad.Layout.PerWorkspace
 import           XMonad.Util.EZConfig
-import           XMonad.Actions.UpdatePointer
 
 
 main :: IO ()
 main  = xmonad =<< xmobar (Ewmh.ewmh def
-  { terminal    = "termite"
+  { terminal    = myTerminal
   , modMask     = mod4Mask
   , borderWidth = 2
-  , manageHook  = mconcat
+  , manageHook  = composeAll
         [ manageHook def
         , role =? "browser"     --> doShift "2"
         , role =? "pop-up"      --> doFloat
-        , className =? "Steam"  --> doShift "9"
+        , appName =? "Steam"    --> doShift "9"
         , appName =? "zenity"   --> doFloat
+        , appName =? "emacs"    --> doShift "1"
         , fullscreenManageHook
         ]
   , layoutHook  = let full = noBorders (fullscreenFull Full)
@@ -48,3 +49,4 @@ main  = xmonad =<< xmobar (Ewmh.ewmh def
     where
         role = stringProperty "WM_WINDOW_ROLE"
         menu = "rofi -combi-modi window,run -show combi -modi combi -hide-scrollbar"
+        myTerminal = "termite"
