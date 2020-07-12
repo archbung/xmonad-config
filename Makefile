@@ -2,9 +2,9 @@ APP_DIR = $(HOME)/.local/bin
 
 .PHONY: install
 install:
-	stack setup
-	stack install --local-bin-path $(APP_DIR)
+	nix-build shell.nix
+	mkdir -p ${APP_DIR} && cp result/bin/xmonad ${APP_DIR}/xmonad
 
 .PHONY: clean
 clean:
-	stack clean
+	cabal clean

@@ -48,5 +48,5 @@ main  = xmonad $ Ewmh.ewmh def
 
     where
         role = stringProperty "WM_WINDOW_ROLE"
-        menu = "rofi -combi-modi window,run -show combi -modi combi -hide-scrollbar"
-        myTerminal = "alacritty"
+        menu = "dmenu_run -fn 'FiraCode-10' -b"
+        myTerminal = "kitty"
