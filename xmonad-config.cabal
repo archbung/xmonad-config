@@ -2,25 +2,19 @@ name:                xmonad-config
 version:             0.1.0.0
 -- synopsis:
 -- description:
+homepage:            https://github.com/githubuser/xmonad-config#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Hizbullah Abdul Aziz
-maintainer:          hizbullah.abdul@gmail.com
--- copyright:
--- category:
+author:              Hizbullah Abdul Aziz Jabbar
+maintainer:          archbung@gmail.com
+copyright:           2021 Hizbullah Abdul Aziz Jabbar
+category:            Desktop
 build-type:          Simple
---extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
+extra-source-files:  README.md
 
 executable xmonad
-  main-is:             Main.hs
   hs-source-dirs:      src
-  -- other-modules:
-  -- other-extensions:
-  build-depends:       base, xmonad, xmonad-contrib, X11
+  main-is:             Main.hs
   default-language:    Haskell2010
-
--- executable xmobar
---   main-is:             Bottom.hs
---  hs-source-dirs:      src
---  build-depends:       base, xmobar
+  build-depends:       base >= 4.7 && < 5, xmonad, xmonad-contrib

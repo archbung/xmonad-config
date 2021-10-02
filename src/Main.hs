@@ -1,52 +1,48 @@
 module Main where
 
-import           XMonad
-import           XMonad.Actions.UpdatePointer
-import           XMonad.Hooks.ManageDocks
-import qualified XMonad.Hooks.EwmhDesktops      as Ewmh
-import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.SetWMName
-import           XMonad.Layout.NoBorders
-import           XMonad.Layout.Fullscreen
-import           XMonad.Layout.Spiral
-import           XMonad.Layout.PerWorkspace
-import           XMonad.Util.EZConfig
-
+import XMonad
+import XMonad.Actions.UpdatePointer
+import XMonad.Config.Desktop
+import XMonad.Hooks.DynamicLog
+import qualified XMonad.Hooks.EwmhDesktops as E
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
+import XMonad.Layout.Fullscreen
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Spiral
+import XMonad.Layout.ThreeColumns
+import XMonad.Util.EZConfig
 
 main :: IO ()
-main  = xmonad $ Ewmh.ewmh def
-  { terminal    = myTerminal
+main = xmonad $ E.ewmh def
+  { terminal    = "kitty"
   , modMask     = mod4Mask
   , borderWidth = 2
+  , startupHook = setWMName "LG3D"
   , manageHook  = composeAll
-        [ manageHook def
-        , role =? "browser"     --> doShift "2"
-        , role =? "pop-up"      --> doFloat
-        , appName =? "Steam"    --> doShift "9"
-        , appName =? "zenity"   --> doFloat
-        , appName =? "emacs"    --> doShift "1"
-        , fullscreenManageHook
-        ]
+    [ manageHook def
+    , role =? "browser"   --> doShift "2"
+    , role =? "popup"     --> doFloat 
+    , appName =? "Steam"  --> doShift "9"
+    , appName =? "Emacs"  --> doShift "1"
+    , fullscreenManageHook
+    ]
   , layoutHook  = let full = noBorders (fullscreenFull Full)
-                   in onWorkspace "9" full $ smartBorders $ avoidStruts $
-                       Tall 1 (3/100) (1/2) ||| spiral (6/7) ||| full
+                      tall = Tall 1 (3/100) (1/2)
+                      threeCol = ThreeCol 1 (3/100) (1/2)
+                   in onWorkspace "9" full . smartBorders . avoidStruts $
+                      tall ||| Mirror tall ||| threeCol ||| spiral (6/7) ||| full
   , logHook     = dynamicLogWithPP def >> updatePointer (0.75, 0.75) (0.75, 0.75)
   , handleEventHook = mconcat
-        [ handleEventHook def
-        , fullscreenEventHook
-        ]
-  , startupHook = setWMName "LG3D"
+      [ handleEventHook def
+      , fullscreenEventHook
+      ]
   }
   `additionalKeysP`
-  [ ("M-p",                     spawn menu)
-  , ("M-q",                     spawn "xmonad --restart")
-  , ("M-S-l",                   spawn "i3lock -c 000000")
-  , ("<XF86AudioMute>",         spawn "pamixer -t")
-  , ("<XF86AudioRaiseVolume>",  spawn "pamixer -i 5")
-  , ("<XF86AudioLowerVolume>",  spawn "pamixer -d 5")
+  [ ("M-p", spawn menu)
   ]
 
-    where
-        role = stringProperty "WM_WINDOW_ROLE"
-        menu = "dmenu_run -fn 'FiraCode-10' -b"
-        myTerminal = "kitty"
+  where 
+    role = stringProperty "WM_WINDOW_ROLE"
+    menu = "rofi -show run -modi run -columns 9"
