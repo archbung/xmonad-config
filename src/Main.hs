@@ -15,7 +15,7 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 
 main :: IO ()
-main = xmonad $ E.ewmh def
+main = xmonad $ E.ewmh desktopConfig
   { terminal    = "kitty"
   , modMask     = mod4Mask
   , borderWidth = 2
@@ -23,7 +23,7 @@ main = xmonad $ E.ewmh def
   , manageHook  = composeAll
     [ manageHook def
     , role =? "browser"   --> doShift "2"
-    , role =? "popup"     --> doFloat 
+    , role =? "popup"     --> doFloat
     , appName =? "Steam"  --> doShift "9"
     , appName =? "Emacs"  --> doShift "1"
     , fullscreenManageHook
@@ -43,6 +43,6 @@ main = xmonad $ E.ewmh def
   [ ("M-p", spawn menu)
   ]
 
-  where 
+  where
     role = stringProperty "WM_WINDOW_ROLE"
-    menu = "rofi -show run -modi run -columns 9"
+    menu = "dmenu_run -fn 'InconsolataGo Nerd Font Mono-12'"
