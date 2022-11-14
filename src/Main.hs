@@ -15,7 +15,7 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 
 main :: IO ()
-main = xmonad $ E.ewmh desktopConfig
+main = xmonad =<< xmobar (E.ewmh def
   { terminal    = "kitty"
   , modMask     = mod4Mask
   , borderWidth = 2
@@ -41,8 +41,8 @@ main = xmonad $ E.ewmh desktopConfig
   }
   `additionalKeysP`
   [ ("M-p", spawn menu)
-  ]
+  ])
 
   where
     role = stringProperty "WM_WINDOW_ROLE"
-    menu = "dmenu_run -fn 'InconsolataGo Nerd Font Mono-12'"
+    menu = "dmenu_run -fn 'InconsolataGo Nerd Font Mono-12' -b"

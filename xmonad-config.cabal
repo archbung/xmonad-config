@@ -6,8 +6,8 @@ homepage:            https://github.com/githubuser/xmonad-config#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Hizbullah Abdul Aziz Jabbar
-maintainer:          archbung@gmail.com
-copyright:           2021 Hizbullah Abdul Aziz Jabbar
+maintainer:          archbung@tutanota.com
+copyright:           2022 Hizbullah Abdul Aziz Jabbar
 category:            Desktop
 build-type:          Simple
 cabal-version:       >=1.10
@@ -18,3 +18,9 @@ executable xmonad
   main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5, xmonad, xmonad-contrib
+
+executable xmobar
+  hs-source-dirs:      src
+  main-is:             Bottom.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5, xmobar
