@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cabal clean && cabal install --overwrite-policy=always
+cabal update && cabal install --overwrite-policy=always
