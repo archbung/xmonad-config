@@ -1,2 +1,2 @@
-stack clean
-stack build --copy-bins
+#!/usr/bin/env bash
+cabal clean && cabal install --overwrite-policy=always
