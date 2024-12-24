@@ -55,7 +55,7 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall
+    ghc-options: -Wall -O2 -j
 
 executable xmonad
     -- Import common warning flags.
@@ -71,26 +71,10 @@ executable xmonad
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1
+    build-depends:    base
+                    , X11
                     , xmonad
                     , xmonad-contrib
-
-    -- Directories containing source files.
-    hs-source-dirs:   app
-
-    -- Base language which the package is written in.
-    default-language: GHC2021
-
-executable xmobar
-    -- Import common warning flags.
-    import:           warnings
-
-    -- .hs or .lhs file containing the Main module.
-    main-is:          Bottom.hs
-
-    -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1
-                    , xmobar
 
     -- Directories containing source files.
     hs-source-dirs:   app
